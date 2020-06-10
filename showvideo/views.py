@@ -33,7 +33,7 @@ def one_video(request,id):
     return  render(request, "one_video.html", response)
 
 def add_like(request, id):
-    Video.objects.get(id= id)
+    video = Video.objects.get(id= id)
     video.likes += 2
     video.save()
     return  redirect("main_page")
