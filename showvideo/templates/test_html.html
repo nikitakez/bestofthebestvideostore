@@ -1,0 +1,10 @@
+<form action="/hello/comment/{{ some_id }}/" method="post">
+    {% csrf_token %}
+    <div class="form-group">
+    <label for="comment">Comment:</label>
+    <textarea class="form-control" rows="5" name ="com"></textarea>
+    <input class="from-control" type="password" name="pwd">
+    </div>
+
+    <button type="submit" class="btn btn-success">Ok</button>
+</form>

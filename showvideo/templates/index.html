@@ -1,24 +1,50 @@
 <!DOCTYPE html>
-<html lang="en">
+<a lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
-<body>
-{{ name }}
-{{ d }}
-{{ arr }}
-<br>
-{% for i in arr %}
-    {% if i == 2 %}
-        <i>{{ i|add:1 }}</i><br>
-    {% else %}
-        <i>{{ i|add:10 }}</i><br>
-        {% endif %}
-{% endfor %}
-<h1>hello world from templates</h1>
+{% extends "main_template.html" %}
+{#<body>#}
+{#{{ name }}#}
+{#{{ d }}#}
+{#{{ arr }}#}
+{#<br>#}
+{#{% for i in arr %}#}
+{#    {% if i == 2 %}#}
+{#        <i>{{ i|add:1 }}</i><br>#}
+{#    {% else %}#}
+{#        <i>{{ i|add:10 }}</i><br>#}
+{#        {% endif %}#}
+{#{% endfor %}#}
+{#<h1>hello world from templates</h1>#}
+{% block title %}ALL VIDEO{% endblock %}
+{% block video %}
 {% for video in content %}
-<iframe width="1280" height="720" src="{{ video.urls }}"></iframe>
+    <iframe width="1280" height="720" src="{{ video.urls }}"></iframe>
+    <a href="/hello/one_video/{{ video.id }}"><h1><i>{{ video.title }}</i></h1></a>
+    <h3><i>{{ video_date }}</i></h3>
+    <h3>Likes: {{ video.likes }}</h3>
+    <h5>{{ video.descruptions }}</h5>
+    {% for com in video.comment.all %}
+        <h5>{{ com.text }}</h5>
+
+        <h6>{{ com.date }}</h6>
+        <hr>
+    {% endfor %}
+
+{% include "test_html.html" with some_id=video.id %}
+{#    <form action="/hello/comment/{{ video.id }}" method="get">#}
+{#    <div class="form-group">#}
+{#    <label for="comment">Comment:</label>#}
+{#    <textarea class="form-control" rows="5" name ="com"></textarea>#}
+{#    </div>#}
+{##}
+{#    <button type="submit" class="btn btn-success">Ok</button>#}
+{#</form>#}
+
 {% endfor %}
+
+{% endblock %}
 </body>
 </html>

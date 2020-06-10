@@ -1,0 +1,15 @@
+{% extends "main_template.html" %}
+{% block title %}ALL VIDEO{% endblock %}
+
+
+
+
+{% block video %}
+
+
+    <iframe width="1280" height="720" src="{{ video.urls }}"></iframe>
+
+    {% include "test_html.html" with some_id=video.id %}
+
+    <a href="/hello/add_like/{{ video.id }}/">Likes: {{ video.likes }}</a>
+{% endblock %}

@@ -17,6 +17,6 @@ class Video(models.Model):
 class Comment(models.Model):
     text = models.TextField()
     date = models.DateTimeField(auto_now_add=True)
-    comment_video = models.ForeignKey(Video, on_delete=models.CASCADE)
+    comment_video = models.ForeignKey(Video, on_delete=models.CASCADE, related_name="comment")
 
 
