@@ -7,8 +7,8 @@
 <img src="{% static "kot.jpg" %}">
 {% for video in content %}
     <iframe width="1280" height="720" src="{{ video.urls }}"></iframe>
-    <a href="/hello/one_video/{{ video.id }}"><h1><i>{{ video.title }}</i></h1></a>
-    <h3><i>{{ video_date }}</i></h3>
+    <a href={% url "one_video" id=video.id %}>
+        <h3><i>{{ video.title }}</i></h3></a>
 {#    <a href="/hello/add_like/{{ video.id }}/">Likes: {{ video.likes }}</a>#}
     <h3 class="like" id = "{{ video.id }}">Likes:{{ video.likes }}</h3>
     <h5>{{ video.descruptions }}</h5>
