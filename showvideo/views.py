@@ -3,11 +3,15 @@ from django.http import HttpResponse
 from .models import Video, Comment
 from showvideo.serializer import CommentSerializer, VideoSerializer
 from rest_framework.generics import (CreateAPIView, ListAPIView, RetrieveUpdateDestroyAPIView)
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.authentication import TokenAuthentication
 
 
 
 # Create your views here.
 class VideoList(ListAPIView):
+    permission_classes = [IsAuthenticated]
+    # authentication_classes = [TokenAuthentication]
     serializer_class = VideoSerializer
     queryset = Video.objects.all()
 
