@@ -5,6 +5,7 @@ from showvideo.serializer import CommentSerializer, VideoSerializer
 from rest_framework.generics import (CreateAPIView, ListAPIView, RetrieveUpdateDestroyAPIView)
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.authentication import TokenAuthentication
+from json import dumps
 
 
 
@@ -70,3 +71,11 @@ def ajax_like(request):
     video.likes += 1
     video.save()
     return HttpResponse(video.likes)
+
+def ajax_comment(request):
+    id = request.GET["id"]
+    val = request.GET["val"]
+    com = Comment.objects.create(text=val, comment_video_id=id)
+    response = {"id":com.id, "date":com.date.__str__()}
+    response = dumps(response)
+    return HttpResponse(response)

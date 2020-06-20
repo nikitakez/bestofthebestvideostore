@@ -6,12 +6,13 @@
 {% block video %}
 <img src="{% static "kot.jpg" %}">
 {% for video in content %}
-    <iframe width="1280" height="720" src="{{ video.urls }}"></iframe>
+    <iframe width="1100" height="700" src="{{ video.urls }}"></iframe>
     <a href={% url "one_video" id=video.id %}>
         <h3><i>{{ video.title }}</i></h3></a>
 {#    <a href="/hello/add_like/{{ video.id }}/">Likes: {{ video.likes }}</a>#}
     <h3 class="like" id = "{{ video.id }}">Likes:{{ video.likes }}</h3>
     <h5>{{ video.descruptions }}</h5>
+    <div id = "comment-container{{ video.id }}">
     {% for com in video.comment.all %}
         <button data-toggle="collapse" data-target="#demo{{ com.id }}">Collapsible</button>
 
@@ -19,11 +20,12 @@
         {{ com.text }}
 
     </div>
-        <h5>{{ com.text }}</h5>
+{#        <h5>{{ com.text }}</h5>#}
 
         <h6>{{ com.date }}</h6>
         <hr>
     {% endfor %}
+    </div>
 
 {% include "test_html.html" with some_id=video.id %}
 {#    <form action="/hello/comment/{{ video.id }}" method="get">#}
@@ -38,5 +40,3 @@
 {% endfor %}
 
 {% endblock %}
-</body>
-</html>
